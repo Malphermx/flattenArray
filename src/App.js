@@ -1,7 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
 
+export function flatten(arr){
+  if(Array.isArray(arr)){
+    const flattenedArray = []
+    function handleFlattenArray(a){
+      a.forEach((el)=>{
+        if(Array.isArray(el)){
+          handleFlattenArray(el)
+        }else{
+          flattenedArray.push(el)
+        }
+      })
+    }
+    handleFlattenArray(arr);
+    return flattenedArray
+  }
+  return "No es un arreglo"
+}
+
+
 function App() {
+  console.log(flatten([1, [2, [3, [4, 5]]]]))
+  console.log(flatten([6, [1, [2, 3], 4], 5]))
+  console.log(flatten([[[1, 2,], 3], 4, 5]))
+  console.log(flatten(1))
   return (
     <div className="App">
       <header className="App-header">
